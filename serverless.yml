@@ -1,0 +1,69 @@
+service: test-crud-node-less
+
+# DRY constants: define all compound/generated names in one place
+# Override args are: .. defaults:
+# --app_acronym          test-crud-node-less
+# --aws_id              your_aws_account_id
+# --region              eu-central-1
+# --stage               dev
+
+custom:
+
+  default_app_acronym: serverless-crud-node
+  default_stage: dev
+  default_region: eu-west-1
+  aws_account_ids:
+    dev: xxxxx
+    stg: xxxxx
+    prod: xxxxx
+  region: ${opt:region, self:custom.default_region}
+  app_acronym: ${opt:app_acronym, self:custom.default_app_acronym}
+  aws_account_id: ${opt:aws_id, self:custom.aws_account_ids.${self:custom.stage}}
+  stage: ${opt:stage, self:custom.default_stage}
+  stack_name: ${self:custom.app_acronym}-${self:custom.stage}
+
+
+  # ------------------ DYN DATA ITEMS ------------------- #
+  dynamodb_host: https://dynamodb.${self:custom.region}.amazonaws.com
+  dynamodb_table_items: ${self:custom.stage}-items-dynamodb-table
+  dynamodb_arn_items: arn:aws:dynamodb:${self:custom.region}:*:table/${self:custom.dynamodb_table_items}
+
+
+
+package:
+  exclude:
+    - .idea/**
+    - scripts/**
+    - tests/**
+    - README.md
+    - .eslintignore
+    - .eslintrc.json
+    - docker-compose.yml
+    - Dockerfile
+    - yarn.lock
+    - package.json
+    - package-lock.json
+
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: ${self:custom.stage}
+  region: ${self:custom.region}
+  environment:
+    ACCOUNT_ID: ${self:custom.aws_account_id}
+    DDB_REGION: ${self:custom.region}
+    DYNAMO_DB_ENDPOINT: ${self:custom.dynamodb_host}
+    DB_TABLE: ${self:custom.dynamodb_table_items}
+
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource:
+        - ${self:custom.dynamodb_arn_item}

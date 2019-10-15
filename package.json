@@ -1,0 +1,19 @@
+{
+  "name": "test-crud-node-less",
+  "version": "1.0.0",
+  "description": "A simple test for HTTPs express handler for make a good pattern for develop in serverless environment with BDD and TDD",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bardarz/crud-node-serverless.git"
+  },
+  "author": "DeepZima",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bardarz/crud-node-serverless/issues"
+  },
+  "homepage": "https://github.com/bardarz/crud-node-serverless#readme"
+}
