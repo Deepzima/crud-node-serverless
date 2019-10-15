@@ -1,0 +1,17 @@
+# package directories
+node_modules
+jspm_packages
+
+# Serverless directories
+.serverless
+config.json
+
+# OSX stupid annoying stuff
+.DS_Store
+
+# IDE and other configs
+.vscode
+.idea
+
+# Logs or another stupid stuff
+*.log
