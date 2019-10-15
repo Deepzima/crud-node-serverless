@@ -15,5 +15,26 @@
   "bugs": {
     "url": "https://github.com/bardarz/crud-node-serverless/issues"
   },
-  "homepage": "https://github.com/bardarz/crud-node-serverless#readme"
+  "homepage": "https://github.com/bardarz/crud-node-serverless#readme",
+  "dependencies": {
+    "@babel/polyfill": "^7.6.0",
+    "@babel/runtime": "^7.6.3",
+    "aws-sdk": "^2.549.0",
+    "babel-loader": "^8.0.6",
+    "express": "^4.17.1",
+    "serverless-http": "^2.3.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.6.4",
+    "@babel/core": "^7.6.4",
+    "@babel/plugin-transform-runtime": "^7.6.2",
+    "@babel/preset-env": "^7.6.3",
+    "@babel/register": "^7.6.2",
+    "babel-plugin-source-map-support": "^2.1.1",
+    "babel-watch": "^7.0.0",
+    "serverless-offline": "^5.12.0",
+    "serverless-webpack": "^5.3.1",
+    "webpack": "^4.41.1",
+    "webpack-node-externals": "^1.7.2"
+  }
 }

@@ -28,7 +28,16 @@ custom:
   dynamodb_table_items: ${self:custom.stage}-items-dynamodb-table
   dynamodb_arn_items: arn:aws:dynamodb:${self:custom.region}:*:table/${self:custom.dynamodb_table_items}
 
+  # For serverless-webpack
+  webpack:
+    webpackConfig: ./webpack.config.js
+    includeModules: true
+    packager: 'npm'
 
+
+plugins:
+  - serverless-offline
+  - serverless-webpack
 
 package:
   exclude:
@@ -66,4 +75,21 @@ provider:
         - dynamodb:UpdateItem
         - dynamodb:DeleteItem
       Resource:
-        - ${self:custom.dynamodb_arn_item}
+        - ${self:custom.dynamodb_arn_items}
+        -
+functions:
+  app:
+    handler: handler.main
+    events:
+      - http:
+          method : ANY
+          path : '/'
+          #         authorizer: authorizerFunc
+      - http:
+          method: ANY
+          path: '{proxy+}'
+          #         authorizer: authorizerFunc
+
+
+  # authorizer:
+  #   handler: authorizer.main
