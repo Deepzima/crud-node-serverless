@@ -18,3 +18,4 @@ config.json
 
 # Logs or another stupid stuff
 *.log
+.nyc_output
