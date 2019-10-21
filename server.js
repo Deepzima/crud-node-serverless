@@ -1,6 +1,6 @@
 const debug =require('debug')('server:debug');
 const http = require('http');
-const app = require('./app');
+const app = require('./src/app');
 
 const server = http.createServer(app);
 const PORT = process.env.NODE_PORT || 5000;
