@@ -13,7 +13,7 @@ custom:
   default_stage: dev
   default_region: eu-west-1
   aws_account_ids:
-    dev: xxxxx
+    dev: xxxx
     stg: xxxxx
     prod: xxxxx
   region: ${opt:region, self:custom.default_region}
@@ -65,18 +65,7 @@ provider:
     DYNAMO_DB_ENDPOINT: ${self:custom.dynamodb_host}
     DB_TABLE: ${self:custom.dynamodb_table_items}
 
-  iamRoleStatements:
-    - Effect: Allow
-      Action:
-        - dynamodb:Query
-        - dynamodb:Scan
-        - dynamodb:GetItem
-        - dynamodb:PutItem
-        - dynamodb:UpdateItem
-        - dynamodb:DeleteItem
-      Resource:
-        - ${self:custom.dynamodb_arn_items}
-        -
+
 functions:
   app:
     handler: handler.main
@@ -84,11 +73,9 @@ functions:
       - http:
           method : ANY
           path : '/'
-          #         authorizer: authorizerFunc
       - http:
           method: ANY
           path: '{proxy+}'
-          #         authorizer: authorizerFunc
 
 
   # authorizer:

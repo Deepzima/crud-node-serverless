@@ -1,4 +1,14 @@
 {
-  "plugins": ["@babel/plugin-transform-runtime"],
-  "presets": ["@babel/preset-env"]
+  "plugins": ["source-map-support","@babel/plugin-syntax-dynamic-import"],
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "modules":"commonjs",
+        "targets": {
+          "node": "8.10"
+        }
+      }
+    ]
+  ]
 }

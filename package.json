@@ -4,6 +4,7 @@
   "description": "A simple test for HTTPs express handler for make a good pattern for develop in serverless environment with BDD and TDD",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon --exec babel-node server.js",
     "test": "DEBUG=server:debug NODE_ENV=test mocha --require @babel/register --reporter spec --exit   tests/ --exec babel-node",
     "cover": "nyc npm run test"
   },
@@ -20,27 +21,38 @@
   "dependencies": {
     "@babel/polyfill": "^7.6.0",
     "@babel/runtime": "^7.6.3",
+    "@hapi/joi": "^16.1.7",
     "aws-sdk": "^2.549.0",
-    "babel-loader": "^8.0.6",
+    "aws-serverless-express": "^3.3.6",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dynamoose": "^1.11.1",
     "express": "^4.17.1",
-    "serverless-http": "^2.3.0"
+    "express-joi-validation": "^4.0.1",
+    "source-map-support": "^0.5.13"
   },
   "devDependencies": {
     "@babel/cli": "^7.6.4",
     "@babel/core": "^7.6.4",
+    "@babel/node": "^7.6.3",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/plugin-transform-runtime": "^7.6.2",
     "@babel/preset-env": "^7.6.3",
     "@babel/register": "^7.6.2",
+    "babel-loader": "^8.0.6",
     "babel-plugin-source-map-support": "^2.1.1",
     "babel-watch": "^7.0.0",
     "chai": "^4.2.0",
     "debug": "^4.1.1",
     "mocha": "^6.2.1",
+    "nodemon": "^1.19.4",
     "nyc": "^14.1.1",
+    "serverless-bundle": "^1.2.5",
     "serverless-offline": "^5.12.0",
     "serverless-webpack": "^5.3.1",
     "superset": "^1.0.1",
-    "webpack": "^4.41.1",
+    "supertest": "^4.0.2",
+    "webpack": "^4.41.2",
     "webpack-node-externals": "^1.7.2"
   }
 }
