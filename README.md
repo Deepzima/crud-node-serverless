@@ -27,9 +27,7 @@ ecosystem and it's good to archieve a proof-of concepts.
 
 * `Webpack` and `webpack-serverless` if you want to use the latest ecma version, use loaders and manage the bundle of your code.
 
-* `Mocha` testing framework
-
-* `Chai` Our TDD/BDD assertion library
+* `Jest` Our TDD/BDD assertion library
 
 * `SuperTest` HTTP server testing library 
 
