@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon --exec babel-node server.js",
-    "test": "DEBUG=server:debug NODE_ENV=test mocha --require @babel/register --reporter spec --exit   tests/ --exec babel-node",
+    "test": "DEBUG=server:debug NODE_ENV=test serverless-bundle test",
     "cover": "nyc npm run test"
   },
   "repository": {
@@ -29,6 +29,8 @@
     "dynamoose": "^1.11.1",
     "express": "^4.17.1",
     "express-joi-validation": "^4.0.1",
+    "http-status-codes": "^1.4.0",
+    "lodash": "^4.17.15",
     "source-map-support": "^0.5.13"
   },
   "devDependencies": {
@@ -42,9 +44,8 @@
     "babel-loader": "^8.0.6",
     "babel-plugin-source-map-support": "^2.1.1",
     "babel-watch": "^7.0.0",
-    "chai": "^4.2.0",
     "debug": "^4.1.1",
-    "mocha": "^6.2.1",
+    "jest": "^25.1.0",
     "nodemon": "^1.19.4",
     "nyc": "^14.1.1",
     "serverless-bundle": "^1.2.5",
