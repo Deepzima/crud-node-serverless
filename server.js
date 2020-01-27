@@ -6,9 +6,10 @@ const server = http.createServer(app);
 const PORT = process.env.NODE_PORT || 5000;
 
 const listen = server.listen(PORT, () => {
-    debug(`server is running on port ${PORT}`);
-    console.log(`Listening to port ${PORT}`);
+    if (process.env.NODE_ENV !== 'test') {
+        debug(`server is running on port ${PORT}`);
+        console.log(`Listening to port ${PORT}`);
+    }
 });
-
 
 module.exports.port = listen.address().port;

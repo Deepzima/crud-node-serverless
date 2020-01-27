@@ -1,15 +1,30 @@
-import * as Item from '../models/item.model'
+/** External libraries **/
+import { INTERNAL_SERVER_ERROR, NOT_FOUND, OK } from 'http-status-codes';
+// import * as _ from 'lodash';
 
-const Get = async (req, res) => {
-    console.log(req.params);
+import { isEmpty } from 'lodash';
 
-    await Item.get(req.params.ID).then((data) => {
-        console.log(data);
-        res.json(data);
-    });
+/** Item model **/
+import Item from '../models/item.model'
+import { ErrItemNotFound } from '../errors';
 
+const ItemController = {
+    Get: async (req, res) => {
+        const { ID } = req.params;
+
+        try {
+            const result = await Item.Get(ID);
+
+            if (isEmpty(result)) {
+                return res.status(NOT_FOUND).json(ErrItemNotFound);
+            }
+
+            return res.status(OK).json(result);
+        } catch (e) {
+            console.error(e);
+            return res.status(INTERNAL_SERVER_ERROR).json(e);
+        }
+    }
 };
 
-module.exports = {
-    Get
-};
+export default ItemController;

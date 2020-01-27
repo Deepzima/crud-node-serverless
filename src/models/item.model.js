@@ -1,23 +1,17 @@
-/** Third Party **/
-const dynamoose = require('../config/dynamodb.config');
+/**  Item Dynamoose Schema **/
+import ItemSchema from './schemas/item.schema';
 
-/** Env **/
-import { ENV } from '../config/env.config';
+/**  Errors **/
+import { ErrIdNotDefined } from '../errors';
 
-const Schema = dynamoose.Schema;
+const ItemModel = {
+    Get: async (ID) => {
+        if (!ID) {
+            throw Error(ErrIdNotDefined);
+        }
 
-const ItemSchema = new Schema({
-    set_ID: {
-        type: String,
-        hashKey: true
-    },
-    created_at: String,
-    updated_at: String,
-    data: String
+        return await ItemSchema.get(ID);
+    }
+};
 
-}, {
-    useNativeBooleans: true,
-    useDocumentTypes: true,
-});
-
-module.exports = dynamoose.model(ENV.DYNAMO_DB.ITEM_TABLE, ItemSchema);
+export default ItemModel;
